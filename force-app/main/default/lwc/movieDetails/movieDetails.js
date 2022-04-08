@@ -31,7 +31,7 @@ export default class MovieDetails extends LightningElement {
     }
     get casts(){
         let castMems = this.movieDetails.cast.map(cst => cst.name);
-        return castMems.join(', ');
+        return castMems.length > 0 ? `Starring: ${ castMems.join(', ')}` : '';
     }
     get genre(){
         let gList = this.movieDetails.genres.map(g => g.name);
@@ -50,8 +50,15 @@ export default class MovieDetails extends LightningElement {
         this.dispatchEvent(new CustomEvent('playtrailer',{detail: this.trailerList[0].key}));
     }
 
+    connectedCallback(){
+        
+    }
+
     renderedCallback(){
         if(this.rendered) return;
+
+        let elem = this.template.querySelector('.movie-details-page');
+        elem.style = `background-image: url(${this.backdropBaseUrl + this.movieDetails.backdrop_path})`;
 
         if(this.movieDetails.videos) {
             this.trailerList = this.movieDetails.videos.results.filter(video => {

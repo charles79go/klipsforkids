@@ -19,7 +19,7 @@
                 ></c-search-canvas>
         </template>
         <template if:true={showPosterAndGroups}>
-            <c-group-set group-title="Adventure Movies" movie-list={popularAdventure} image-base-url={imageBaseUrl}></c-group-set>
+            <c-group-set class="adventure-movies" group-title="Adventure Movies" movie-list={popularAdventure} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="Animation Movies" movie-list={popularAnimation} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="Family Movies" movie-list={popularFamily} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="Comedy Movies" movie-list={popularComedy} image-base-url={imageBaseUrl}></c-group-set>

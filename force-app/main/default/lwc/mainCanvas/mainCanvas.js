@@ -28,16 +28,6 @@ export default class MainCanvas extends LightningElement {
 
     goBackPageFn(e) {
 
-        console.log(this.scrollHeight);
-        let scrollOptions = {
-            left: 0,
-            top: this.scrollHeight,
-        }
-        let elem = window.document.querySelector('.layout');
-        console.log(elem)
-        window.scrollTo(scrollOptions);
-        this.scrollHeight = 0;
-
         this.showMovieDetails = false;
         if(this.backRef === 'home page') {
             this.showSearch = false;
@@ -46,6 +36,9 @@ export default class MainCanvas extends LightningElement {
             this.showSearch = true;
             this.showPosterAndGroups = false;
         }
+
+        let elem = document.querySelector('body');
+        elem.style = "overflow:auto";
     }
 
     returnToHomeFn(){
@@ -56,11 +49,17 @@ export default class MainCanvas extends LightningElement {
         this.searchValue = '';
         this.backRef = 'home page';
 
+        let elem = document.querySelector('body');
+        elem.style = "overflow:auto";
+
     }
 
     async searchMoviesFn(e){
 
         window.scrollTo(0, 0);
+
+        let elem = document.querySelector('body');
+        elem.style = "overflow:auto";
 
         let searchQuery = e.detail.trim();
 
@@ -116,7 +115,9 @@ export default class MainCanvas extends LightningElement {
 
     async fetchMovieDetailsFn(e) {
 
-        window.scrollTo(0,0);
+        // stop scrolling.
+        let elem = document.querySelector('body');
+        elem.style = "height:100%;overflow:hidden;"
 
         this.backRef = e.detail.backRef;
         this.scrollHeight = e.detail.yPosition;
@@ -142,8 +143,8 @@ export default class MainCanvas extends LightningElement {
                 cast: popularCasts
             }
 
-            this.showSearch = false;
-            this.showPosterAndGroups = false;
+            // this.showSearch = false;
+            // this.showPosterAndGroups = false;
             this.showMovieDetails = true;
             
         } catch(e) {
