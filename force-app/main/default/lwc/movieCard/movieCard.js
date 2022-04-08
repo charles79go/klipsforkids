@@ -20,7 +20,8 @@ export default class MovieCard extends LightningElement {
 
         let detail = {
             backRef: this.movieDetailBackRef,
-            movieId: this.movieObj.id
+            movieId: this.movieObj.id,
+            yPosition: window.scrollY
         }
 
         this.dispatchEvent(new CustomEvent('fetchmoviedetails', {bubbles: true, composed: true, detail}));

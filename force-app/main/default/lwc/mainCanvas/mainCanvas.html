@@ -34,7 +34,7 @@
                 onplaytrailer={playTrailerFn}></c-movie-details>
         </template>
         <template if:true={showTrailer}>
-            <c-video trailer-path={trailerPath} onexittrailer={exitTrailerFn}></c-video>
+            <c-video trailer-path={trailerUrl} onexittrailer={exitTrailerFn}></c-video>
         </template>
     </div>
     <c-footer></c-footer>

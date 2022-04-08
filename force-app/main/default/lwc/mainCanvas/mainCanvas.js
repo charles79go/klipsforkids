@@ -13,6 +13,7 @@ export default class MainCanvas extends LightningElement {
     popularFantasy = [];
     movieDetails = null;
     trailerUrl = null;
+    scrollHeight = 0;
 
     searchResults = [];
     searchValue = '';
@@ -26,6 +27,17 @@ export default class MainCanvas extends LightningElement {
     backRef = 'home page';
 
     goBackPageFn(e) {
+
+        console.log(this.scrollHeight);
+        let scrollOptions = {
+            left: 0,
+            top: this.scrollHeight,
+        }
+        let elem = window.document.querySelector('.layout');
+        console.log(elem)
+        window.scrollTo(scrollOptions);
+        this.scrollHeight = 0;
+
         this.showMovieDetails = false;
         if(this.backRef === 'home page') {
             this.showSearch = false;
@@ -103,9 +115,11 @@ export default class MainCanvas extends LightningElement {
     }
 
     async fetchMovieDetailsFn(e) {
-        window.scrollTo(0, 0); //! ========================
+
+        window.scrollTo(0,0);
 
         this.backRef = e.detail.backRef;
+        this.scrollHeight = e.detail.yPosition;
 
         let castUrl = `https://api.themoviedb.org/3/movie/${e.detail.movieId}/credits?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US`;
 
@@ -144,7 +158,10 @@ export default class MainCanvas extends LightningElement {
     }
 
     playTrailerFn(e) {
-        this.trailerUrl = `https://www.youtube.com/embed/${e.detail}`;
+        //pBvH8hvnJPk
+
+        this.trailerUrl = `https://www.youtube.com/embed/${e.detail}?&autoplay=1`;
+        console.log('in playtrailerfn', this.trailerUrl)
         this.showTrailer = true;
     }
 

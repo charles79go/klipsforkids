@@ -47,9 +47,6 @@ export default class MovieDetails extends LightningElement {
 
     playTrailerFn(){
 
-        console.log(JSON.stringify(this.trailerList, null, 4));
-        console.log(JSON.stringify(this.trailerList[0].key , null, 4));
-
         this.dispatchEvent(new CustomEvent('playtrailer',{detail: this.trailerList[0].key}));
     }
 
