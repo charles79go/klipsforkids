@@ -1,0 +1,31 @@
+<template>
+    <div class="search-canvas">
+
+        <div class="back-button" onclick={goToHomeFn}>
+            <span class="slds-icon_container slds-icon-utility-chevronleft" title="Back to Home">
+                <svg class="slds-icon slds-icon-text-default" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevronleft"></use>
+                </svg>
+                <span class="slds-assistive-text">Back to Home</span>
+            </span>
+            <span class="back-botton-text">Back to Home</span>
+        </div>
+
+        <div class="slds-m-top_large">
+
+            <div class="slds-text-heading_large slds-m-bottom_medium">{searchMessage}</div>
+    
+            <div class="movie-cards-container">
+                <template for:each={searchResults} for:item="movie">
+                    <c-movie-card key={movie.id} 
+                        image-base-url={imageBaseUrl}
+                        movie-obj={movie}
+                        movie-detail-back-ref="search page"
+                        ></c-movie-card>
+                </template>
+            </div>
+            
+        </div>
+        
+    </div>
+</template>

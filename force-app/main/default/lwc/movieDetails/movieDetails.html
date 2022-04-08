@@ -1,0 +1,55 @@
+<template>
+    <div class="movie-details-page">
+
+        <div class="back-button" onclick={goBackFn}>
+            <span class="slds-icon_container slds-icon-utility-chevronleft" title="Back to Home">
+                <svg class="slds-icon slds-icon-text-default" aria-hidden="true">
+                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevronleft"></use>
+                </svg>
+                <span class="slds-assistive-text">Back</span>
+            </span>
+            <span class="back-botton-text">Back</span>
+        </div>
+
+        <div class="movie-details-card">
+
+            <div class="background-image"><img src={backdropImageSource} alt="No Backdrop Available"></div>
+
+            <div class="background-image-overlay"></div>
+
+            <div class="foreground">
+
+                <div class="top-container">
+                    <div class="img-box">
+                        <img src={posterImageSource} alt="No Poster Available">
+                    </div>
+                    <div class="info">
+                        <div class="title">{movieDetails.title}</div>
+                        <div>{releaseDate}</div>
+                        <div>{genre}</div>
+                        <div>{movieDetails.runtime} mins</div>
+                        <div class="classification">{certification}</div>
+                    </div>
+
+                </div>
+
+                <div class="overview">{movieDetails.overview}</div>
+
+                <div>Starring: {casts}</div>
+            </div>
+            
+            <template if:true={trailerAvailable}>
+                <section class="foreground-right">
+                    <div class="play-btn" onclick={playTrailerFn}>
+                        <span class="slds-icon_container slds-icon-utility-play slds-current-color" title="Play trailer">
+                            <svg class="slds-icon slds-icon_large slds-icon-text-default" aria-hidden="true">
+                                <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#play"></use>
+                            </svg>
+                            <span class="slds-assistive-text">Play Trailer</span>
+                        </span>
+                    </div>
+                </section>
+            </template>
+        </div>
+    </div>
+</template>

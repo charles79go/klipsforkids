@@ -1,0 +1,32 @@
+<template>
+    <div class="navbar-section">
+        <div class="navbar">
+            <span class="brand" onclick={goToHomeFn}>
+                <span class="slds-avatar slds-avatar_medium img-wrapper">
+                    <img alt="logo" src={mvlogo} title="logo" />
+                </span>
+                <span class="brand-name">MovieBase</span>
+            </span>
+
+            <div class="input-wrapper slds-m-left_large">
+
+                <div class="slds-form-element__control">
+                    <input type="text" id="text-input-id-47" placeholder="Search Movies" class="slds-input" 
+                    onkeyup={inputEntryFn} value={searchText}/>
+                </div>
+
+                <div class="search-button-wrapper">
+                    <button onclick={searchMovieFn} class="slds-button slds-button_icon slds-button_icon-border-filled" title="Search">
+                        <svg class="slds-button__icon" aria-hidden="true">
+                        <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#search"></use>
+                        </svg>
+                        <span class="slds-assistive-text">Search</span>
+                    </button>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</template>

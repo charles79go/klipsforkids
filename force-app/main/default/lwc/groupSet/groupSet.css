@@ -1,0 +1,37 @@
+.group-set {
+    background-color: #f9f9f9;
+}
+
+.movie-cards-container {
+    display: flex;
+    height: 28rem;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.box {
+    width: 200px;
+    height: 200px;
+    border: 1px solid black;
+    margin: 0 1rem;
+    flex-shrink: 0;
+}
+
+
+.movie-cards-container::-webkit-scrollbar {
+    height: 10px;                          
+}
+.movie-cards-container::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+.movie-cards-container::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: #efecec;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+.movie-cards-container::-webkit-scrollbar-thumb:horizontal:hover {
+    background: #b0afaf;
+}

@@ -1,0 +1,17 @@
+<template>
+    <div class="group-set slds-m-top_large">
+
+        <div class="slds-text-heading_large slds-m-bottom_medium">{groupTitle}</div>
+
+        <div class="movie-cards-container">
+            <template for:each={movieList} for:item="movie">
+                <c-movie-card key={movie.id} 
+                    image-base-url={imageBaseUrl}
+                    movie-obj={movie}
+                    movie-detail-back-ref="home page"
+                    ></c-movie-card>
+            </template>
+        </div>
+        
+    </div>
+</template>

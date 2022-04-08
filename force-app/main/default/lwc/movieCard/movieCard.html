@@ -1,0 +1,12 @@
+<template>
+    <div class="movie-card" onclick={sendMovieDetailsFn}>
+        <div class="img-wrapper">
+            <img src={posterImageSource} alt="Poster Not Available">
+        </div>
+        <div class="movie-info">
+            <div class="movie-title">{movieObj.title}</div>
+            <div class="movie-date">{releaseDate}</div>
+        </div>
+        <div class="score">{movieObj.vote_average}</div>
+    </div>
+</template>
