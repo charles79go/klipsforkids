@@ -1,4 +1,5 @@
 <template>
+
     <template if:true={isLoading}>
         <c-spinner></c-spinner>
     </template>
@@ -9,8 +10,8 @@
         <c-poster img={posterBg}></c-poster>
     </template>
 
-
     <div class="main-section" onfetchmoviedetails={fetchMovieDetailsFn}> 
+
         <template if:true={showSearch}>
             <c-search-canvas ongohome={returnToHomeFn} 
                 search-value={searchValue} 
@@ -18,14 +19,16 @@
                 image-base-url={imageBaseUrl}
                 ></c-search-canvas>
         </template>
+
         <template if:true={showPosterAndGroups}>
-            <c-group-set class="adventure-movies" group-title="Adventure Movies" movie-list={popularAdventure} image-base-url={imageBaseUrl}></c-group-set>
-            <c-group-set group-title="Animation Movies" movie-list={popularAnimation} image-base-url={imageBaseUrl}></c-group-set>
+            <c-group-set group-title="Action Movies" movie-list={popularAction} image-base-url={imageBaseUrl}></c-group-set>
+            <c-group-set group-title="Adventure Movies" movie-list={popularAdventure} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="Family Movies" movie-list={popularFamily} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="Comedy Movies" movie-list={popularComedy} image-base-url={imageBaseUrl}></c-group-set>
-            <c-group-set group-title="Action Movies" movie-list={popularAction} image-base-url={imageBaseUrl}></c-group-set>
             <c-group-set group-title="Fantasy Movies" movie-list={popularFantasy} image-base-url={imageBaseUrl}></c-group-set>
+            <c-group-set group-title="Animation Movies" movie-list={popularAnimation} image-base-url={imageBaseUrl}></c-group-set>
         </template>
+
         <template if:true={showMovieDetails}>
             <c-movie-details ongoback={goBackPageFn} 
                 movie-details={movieDetails} 
@@ -33,9 +36,13 @@
                 backdrop-base-url={backdropBaseUrl}
                 onplaytrailer={playTrailerFn}></c-movie-details>
         </template>
+
         <template if:true={showTrailer}>
             <c-video trailer-path={trailerUrl} onexittrailer={exitTrailerFn}></c-video>
         </template>
+
     </div>
+
     <c-footer></c-footer>
+    
 </template>

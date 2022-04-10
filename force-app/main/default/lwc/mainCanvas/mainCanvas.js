@@ -26,6 +26,16 @@ export default class MainCanvas extends LightningElement {
 
     backRef = 'home page';
 
+    enableScrolling(){
+        let elem = document.querySelector('body');
+        elem.style = "overflow:auto";
+    }
+
+    disableScrolling(){
+        let elem = document.querySelector('body');
+        elem.style = "height:100%;overflow:hidden;"
+    }
+
     goBackPageFn(e) {
 
         this.showMovieDetails = false;
@@ -37,8 +47,7 @@ export default class MainCanvas extends LightningElement {
             this.showPosterAndGroups = false;
         }
 
-        let elem = document.querySelector('body');
-        elem.style = "overflow:auto";
+        this.enableScrolling();
     }
 
     returnToHomeFn(){
@@ -49,17 +58,44 @@ export default class MainCanvas extends LightningElement {
         this.searchValue = '';
         this.backRef = 'home page';
 
-        let elem = document.querySelector('body');
-        elem.style = "overflow:auto";
-
+        this.enableScrolling();
     }
+
+    async filterKidMovies(movieList){
+
+        let responses = await Promise.all(movieList.map(movie => {
+                return fetch(`https://api.themoviedb.org/3/movie/${movie.id}?api_key=b25128a9d00e31558df330afc5baa50b&language=en-US&append_to_response=release_dates`)
+            })
+        );
+
+        let mDetails = await Promise.all(responses.map(r => r.json()));
+
+        // filter all 1. Must have US rating. 2 Must be "", NR, G, PG, PG-13
+        let ratingsList = ['G', 'PG', 'PG-13'];
+        let cleanMovies = mDetails.filter(md =>{
+            let returnMovie = false;
+            md.release_dates.results.forEach(result => {
+                if(result.iso_3166_1 === 'US' && result.release_dates.length >= 1) {
+                    let rating = result.release_dates[0].certification;      
+                    if(ratingsList.includes(rating)) {
+                        returnMovie = true;
+                    }
+                }
+            });
+            if(returnMovie) return md;
+        });
+
+        // console.log(JSON.stringify(cleanMovies, null, 4));
+        return cleanMovies;
+    }
+
 
     async searchMoviesFn(e){
 
+        // go to top of search page.
         window.scrollTo(0, 0);
 
-        let elem = document.querySelector('body');
-        elem.style = "overflow:auto";
+        this.enableScrolling();
 
         let searchQuery = e.detail.trim();
 
@@ -87,16 +123,23 @@ export default class MainCanvas extends LightningElement {
             page1 = await page1.json();
             page2 = await page2.json();
             page3 = await page3.json();
-            this.searchResults = [
+            let tempResults  = [
                 ...page1.results,
                 ...page2.results,
                 ...page3.results ];
 
             // remove all results without posters and backdrops
-            this.searchResults = this.searchResults.filter(res => {
-                return res.backdrop_path !== null && res.poster_path !== null;
+            // remove all vote_average less than 4
+            tempResults = tempResults.filter(res => {
+                return res.backdrop_path !== null && 
+                        res.poster_path !== null &&
+                        Number(res.vote_average) > 4;
             })
 
+            //==================================
+            //! filter out movies above pg-13
+            this.searchResults = await this.filterKidMovies(tempResults);
+            //==================================
 
             this.showSearch = true;
             this.showPosterAndGroups = false;
@@ -115,9 +158,7 @@ export default class MainCanvas extends LightningElement {
 
     async fetchMovieDetailsFn(e) {
 
-        // stop scrolling.
-        let elem = document.querySelector('body');
-        elem.style = "height:100%;overflow:hidden;"
+        this.disableScrolling();
 
         this.backRef = e.detail.backRef;
         this.scrollHeight = e.detail.yPosition;
@@ -143,8 +184,6 @@ export default class MainCanvas extends LightningElement {
                 cast: popularCasts
             }
 
-            // this.showSearch = false;
-            // this.showPosterAndGroups = false;
             this.showMovieDetails = true;
             
         } catch(e) {
@@ -159,10 +198,7 @@ export default class MainCanvas extends LightningElement {
     }
 
     playTrailerFn(e) {
-        //pBvH8hvnJPk
-
         this.trailerUrl = `https://www.youtube.com/embed/${e.detail}?&autoplay=1`;
-        console.log('in playtrailerfn', this.trailerUrl)
         this.showTrailer = true;
     }
 
@@ -227,8 +263,8 @@ export default class MainCanvas extends LightningElement {
                 return res.backdrop_path !== null && res.poster_path !== null;
             })
 
-
             this.isLoading = false;
+
         } catch (e) {
             console.log(e);    
             this.isLoading = false;    

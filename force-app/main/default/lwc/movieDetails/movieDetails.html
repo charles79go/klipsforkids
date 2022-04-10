@@ -3,7 +3,7 @@
         <div class="scroll-container">
 
             <div class="content-container">
-                <div class="back-button" onclick={goBackFn}>
+                <!-- <div class="back-button" onclick={goBackFn}>
                     <span class="slds-icon_container slds-icon-utility-chevronleft" title="Back to Home">
                         <svg class="slds-icon slds-icon-text-default" aria-hidden="true">
                             <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#chevronleft"></use>
@@ -11,7 +11,7 @@
                         <span class="slds-assistive-text">Back</span>
                     </span>
                     <span class="back-botton-text">Back</span>
-                </div>
+                </div> -->
     
                 <div class="movie-details-canvas">
 
@@ -33,6 +33,14 @@
                     
                     
                     <div class="right">
+                        <div class="back-button" >
+                            <span onclick={goBackFn} class="close-x slds-icon_container slds-icon-utility-close" title="Back">
+                                <svg class="slds-icon slds-icon-text-default" aria-hidden="true">
+                                    <use xlink:href="/assets/icons/utility-sprite/svg/symbols.svg#close"></use>
+                                </svg>
+                                <span class="slds-assistive-text">Back</span>
+                            </span>
+                        </div>
 
                         <div class="title">{movieDetails.title}</div>
                         <div>{releaseDate}</div>
@@ -67,6 +75,8 @@
                     </div>
 
                 </div>
+
+                <div class="filler"></div>
             </div>
             
         </div>
