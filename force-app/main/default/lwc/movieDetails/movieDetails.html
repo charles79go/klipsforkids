@@ -63,14 +63,14 @@
                                 </span>
                             </div>
                         </template>
+                        <template if:false={trailerAvailable}>
+                            <div class="not-available">Trailer not Available</div>
+                        </template>
 
     
                         <div class="overview">{movieDetails.overview}</div>
     
                         <div class="starring">{casts}</div>
-                       
-
-                
 
                     </div>
 

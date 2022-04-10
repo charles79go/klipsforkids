@@ -1,7 +1,39 @@
+.modal-page-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0, .85);
+    z-index: 1000;
+}
+
+.modal {
+    height:  70vh;
+    width: calc(70vh * 1.78);
+    position: relative;
+}
+
+.back-button {
+    position: absolute;
+    top: -3rem;
+    right: 0;
+    cursor: pointer;
+
+}
+.back-button svg {
+    fill: #fff;
+}
+
 .iframe-container {
     position: relative;
     overflow: hidden;
     padding-top: 56.25%;
+    border: .5rem solid #fff;
+    border-radius: 4px;
 }
 
 .video {

@@ -7,7 +7,7 @@
     <c-nav-bar onsearchbtnclick={searchMoviesFn} ongohome={returnToHomeFn}></c-nav-bar>
 
     <template if:true={showPosterAndGroups}>
-        <c-poster img={posterBg}></c-poster>
+        <c-poster></c-poster>
     </template>
 
     <div class="main-section" onfetchmoviedetails={fetchMovieDetailsFn}> 

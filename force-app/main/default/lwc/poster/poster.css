@@ -5,15 +5,17 @@
 .poster {
     height: 25rem;
     background-image: url('/resource/posterImage');
-    background-position: 50% 75%;
+    /* background-position: 50% 75%; */
     filter: brightness(0.4);
     background-color: #000000;
+    background-position: center 75%;
+    background-size: cover;
 }
 
 .poster-headline {
     color: #ffffff;
     line-height: 4.5rem;
-    font-size: 4rem;
+    font-size: clamp(2rem, 3vw, 3rem);
     text-align: center;
     z-index: 10;
     position: absolute;

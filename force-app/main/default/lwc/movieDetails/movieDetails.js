@@ -62,7 +62,7 @@ export default class MovieDetails extends LightningElement {
 
         if(this.movieDetails.videos) {
             this.trailerList = this.movieDetails.videos.results.filter(video => {
-                return video.name.toLowerCase().includes('official') 
+                return video.name.toLowerCase().includes('official tr') // capture official trailer only
                         && !video.name.toLowerCase().includes('teaser') 
                         && video.site === 'YouTube';
             });

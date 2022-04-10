@@ -30,7 +30,6 @@
     display: flex;
     width: 100%;
     justify-content: last;
-
 }
 
 
@@ -52,7 +51,7 @@
     border-radius: 10px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     overflow: hidden;
-    background: rgba(249, 249, 249, .85);
+    background: rgba(249, 249, 249, .9);
     width: 80%;
     margin: 0 auto 8rem auto;
     display: flex;
@@ -84,6 +83,12 @@
 }
 .classification {
     font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.not-available {
+    color: #ff0000; 
+    font-style: italic;
     margin-bottom: 1rem;
 }
 
