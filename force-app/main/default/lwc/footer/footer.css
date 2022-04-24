@@ -10,3 +10,11 @@
     justify-content: center;
     align-items: center;
 }
+
+
+
+.link-container .link {
+    color: #ffff00;
+    text-decoration: none; /* no underline */
+    cursor: pointer;
+}

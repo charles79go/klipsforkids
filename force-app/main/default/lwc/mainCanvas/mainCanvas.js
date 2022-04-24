@@ -103,6 +103,8 @@ export default class MainCanvas extends LightningElement {
             this.searchValue = '';
             this.searchResults = [];
             this.showSearch = true;
+            this.showPosterAndGroups = false;
+            this.showMovieDetails = false;
             return;
         };
 
@@ -173,7 +175,7 @@ export default class MainCanvas extends LightningElement {
                 fetch(castUrl),
                 fetch(movieUrl)
             ]);
-            let [cast, movieD] = responses;
+            let [cast, movieD] = responses;  
             cast = await cast.json();
             movieD = await movieD.json();
 
